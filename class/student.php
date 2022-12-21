@@ -58,6 +58,13 @@ public function update($upid){
    return $stmt->execute();
 }
 
+public function delete($dltid){
+    $sql="delete from $this->table where cid = :id";
+    $stmt = connection::Fetching($sql);
+    $stmt->bindParam(':id' , $dltid);
+    return $stmt->execute();
+}
+
 }
 
 

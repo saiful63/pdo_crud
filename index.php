@@ -61,7 +61,7 @@ if($student->update($upid)){
         <td>Name</td>
         <td>Fname</td>
         <td>Lname</td>
-        <td>Action</td>
+        <td width="20%"colspan="2">Action</td>
     </tr>
 
   <?php
@@ -74,7 +74,10 @@ if($student->update($upid)){
         <td><?php echo $value['name'];?></td>
         <td><?php echo $value['fname'];?></td>
         <td><?php echo $value['lname'];?></td>
-        <td><?php echo"<a href='index.php?action=edit&id=".$value['cid']."'>Edit</a>" ?></td>
+        <td>
+        <?php echo"<a href='index.php?action=edit&id=".$value['cid']."'>Edit</a>" ?> ||
+        <?php echo"<a href='index.php?action=delete&id=".$value['cid']."'>Delete</a>" ?>
+       </td>
   </tr>
 
     <?php
@@ -86,9 +89,23 @@ if($student->update($upid)){
 
 <?php
 
+if(isset($_GET['action']) && $_GET['action']=='delete'){
+ $dltid = $_GET['id'];
+ 
+ if($student->delete($dltid)){
+   echo"Data deleted successfully";
+ }
+}
+
+?>
+
+<?php
+
 if(isset($_GET['action']) && $_GET['action'] == 'edit'){
 $edt= $_GET['id'];
 $result=$student->edit($edt);
+
+
 
 
 ?>
